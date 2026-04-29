@@ -6,7 +6,7 @@
     <title>Eurika's 18th Birthday Celebration</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -22,6 +22,7 @@
             --gold: #FFD700;
             --light-gold: #FFF8DC;
             --pink: #FFB6C1;
+            --cream: #FFF8DC;
         }
 
         html {
@@ -30,7 +31,7 @@
         }
 
         body {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cormorant Garamond', serif;
             background: linear-gradient(135deg, #8B0000 0%, #4a0000 50%, #8B0000 100%);
             background-attachment: fixed;
             color: var(--light-gold);
@@ -332,7 +333,7 @@
             border: none;
             padding: 1.2rem 3rem;
             font-size: 1.3rem;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cormorant Garamond', serif;
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
@@ -367,7 +368,7 @@
             transform: translateY(-2px) scale(1.02);
         }
 
-        /* ===== ENVELOPE MODAL ===== */
+        /* ===== ENVELOPE MODAL - FIXED COLORS ===== */
         .envelope-overlay {
             display: none;
             position: fixed;
@@ -375,7 +376,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(74, 0, 0, 0.9);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -402,11 +403,12 @@
         .envelope {
             position: relative;
             width: 100%;
-            background: linear-gradient(135deg, #8B0000, #4a0000);
+            background: linear-gradient(135deg, #6a0000, #3a0000);
             border-radius: 10px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.7);
             overflow: hidden;
             padding-bottom: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
         }
 
         .envelope::before {
@@ -416,7 +418,7 @@
             left: 0;
             width: 100%;
             height: 60%;
-            background: linear-gradient(135deg, #a00000, #5a0000);
+            background: linear-gradient(135deg, #7a0000, #4a0000);
             clip-path: polygon(0 40%, 50% 0, 100% 40%, 100% 100%, 0 100%);
             z-index: 2;
         }
@@ -427,12 +429,12 @@
             left: 0;
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, #9a0000, #6a0000);
+            background: linear-gradient(135deg, #8a0000, #5a0000);
             clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%);
             transform-origin: top;
             transition: transform 0.8s ease-in-out;
             z-index: 3;
-            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-bottom: 2px solid rgba(255, 215, 0, 0.4);
         }
 
         .envelope-container.open .envelope-flap {
@@ -445,17 +447,18 @@
             top: 140px;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--gold), #FFA500);
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--gold), #FF8C00);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
             z-index: 4;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.6);
             transition: all 0.5s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         .envelope-container.open .envelope-seal {
@@ -463,19 +466,21 @@
             transform: translate(-50%, -50%) scale(0);
         }
 
+        /* ===== LETTER - IMPROVED READABILITY ===== */
         .invitation-letter {
             position: relative;
             margin: 20px;
-            background: linear-gradient(135deg, #FFF8DC, #FFE4E1);
+            background: linear-gradient(135deg, #FFFAF0, #FFF5EE);
             border-radius: 10px;
-            padding: 2rem;
-            color: #4a0000;
+            padding: 2.5rem;
+            color: #3a0000;
             transform: translateY(0);
             transition: transform 1s ease-in-out 0.5s;
             z-index: 2;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
             max-height: 70vh;
             overflow-y: auto;
+            border: 1px solid rgba(139, 0, 0, 0.1);
         }
 
         .envelope-container.open .invitation-letter {
@@ -484,81 +489,89 @@
 
         .letter-header {
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             border-bottom: 2px solid rgba(139, 0, 0, 0.2);
-            padding-bottom: 1rem;
+            padding-bottom: 1.5rem;
         }
 
         .letter-header h2 {
             font-family: 'Dancing Script', cursive;
-            font-size: 2.2rem;
+            font-size: 2.8rem;
             color: #8B0000;
             margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         .letter-header .subtitle {
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: #c41e3a;
             font-style: italic;
+            font-weight: 600;
         }
 
         .letter-content {
-            line-height: 1.8;
-            font-size: 0.95rem;
+            line-height: 1.9;
+            font-size: 1.15rem;
             text-align: center;
+            font-weight: 600;
         }
 
         .letter-content p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .letter-highlight {
-            background: rgba(255, 215, 0, 0.15);
-            padding: 0.8rem;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 1rem;
             border-radius: 10px;
-            border-left: 3px solid var(--gold);
+            border-left: 4px solid var(--gold);
             font-weight: 700;
-            color: #8B0000;
-            margin: 1rem 0;
+            color: #6a0000;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
         }
 
         .letter-footer {
             text-align: center;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             font-style: italic;
-            color: #c41e3a;
+            color: #8B0000;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
 
         /* Celebration Details inside letter */
         .letter-details {
-            background: rgba(139, 0, 0, 0.05);
+            background: rgba(139, 0, 0, 0.06);
             border-radius: 15px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border: 1px solid rgba(139, 0, 0, 0.1);
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(139, 0, 0, 0.15);
         }
 
         .letter-details h3 {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: #8B0000;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             text-align: center;
         }
 
         .detail-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 1rem;
-            padding: 0.8rem;
-            background: rgba(255, 255, 255, 0.5);
+            margin-bottom: 1.2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.7);
             border-radius: 10px;
             transition: all 0.3s ease;
+            border: 1px solid rgba(139, 0, 0, 0.1);
         }
 
         .detail-item:hover {
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(255, 215, 0, 0.15);
             transform: translateX(5px);
+            border-color: rgba(255, 215, 0, 0.3);
         }
 
         .detail-item:last-child {
@@ -566,37 +579,41 @@
         }
 
         .detail-icon {
-            font-size: 1.3rem;
-            margin-right: 0.8rem;
-            min-width: 25px;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            min-width: 30px;
         }
 
         .detail-text {
-            font-size: 0.9rem;
-            line-height: 1.5;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #4a0000;
+            font-weight: 600;
         }
 
         .detail-text strong {
             color: #8B0000;
+            font-weight: 700;
         }
 
         .close-envelope-btn {
             position: absolute;
             top: -50px;
             right: 0;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 215, 0, 0.2);
             border: 2px solid var(--gold);
             color: var(--gold);
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
             z-index: 10;
+            font-weight: bold;
         }
 
         .close-envelope-btn:hover {
@@ -605,222 +622,13 @@
             transform: rotate(90deg);
         }
 
-        /* ===== RSVP SECTION (Separate from envelope) ===== */
-        .rsvp-section-outer {
-            position: relative;
-            z-index: 2;
-            padding: 4rem 1rem;
-            display: flex;
-            justify-content: center;
-            background: linear-gradient(135deg, #8B0000 0%, #4a0000 50%, #8B0000 100%);
-        }
-
-        .rsvp-card {
-            background: rgba(74, 0, 0, 0.9);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 20px;
-            padding: 3rem;
-            max-width: 600px;
-            width: 100%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .rsvp-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 60%);
-            animation: cardGlow 8s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes cardGlow {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(10%, 10%); }
-        }
-
-        .rsvp-card h2 {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .rsvp-card .subtitle {
-            font-size: 1.3rem;
-            color: var(--pink);
-            font-style: italic;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .rsvp-text {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: var(--pink);
-            position: relative;
-            z-index: 1;
-        }
-
-        .rsvp-btn {
-            background: linear-gradient(135deg, var(--gold), #FFA500);
-            color: var(--dark-red);
-            border: none;
-            padding: 1rem 3rem;
-            font-size: 1.2rem;
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .rsvp-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .rsvp-btn:hover::after {
-            opacity: 1;
-        }
-
-        .rsvp-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
-            background: linear-gradient(135deg, #FFA500, var(--gold));
-        }
-
-        .closing {
-            text-align: center;
-            margin-top: 2rem;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: var(--pink);
-            position: relative;
-            z-index: 1;
-        }
-
+        /* ===== FOOTER ===== */
         footer {
             text-align: center;
             padding: 2rem;
             background: rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: 2;
-        }
-
-        /* RSVP Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 3000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #4a0000, #8B0000);
-            border: 2px solid var(--gold);
-            border-radius: 20px;
-            padding: 2rem;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            animation: modalSlideIn 0.3s ease-out;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--gold);
-            transition: transform 0.3s;
-        }
-
-        .close-btn:hover {
-            transform: rotate(90deg);
-        }
-
-        .modal h3 {
-            color: var(--gold);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-
-        .modal form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .modal input,
-        .modal select,
-        .modal textarea {
-            padding: 1rem;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--light-gold);
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-        }
-
-        .modal input::placeholder,
-        .modal textarea::placeholder {
-            color: rgba(255, 248, 220, 0.6);
-        }
-
-        .modal textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .modal button[type="submit"] {
-            background: var(--gold);
-            color: var(--dark-red);
-            border: none;
-            padding: 1rem;
-            font-size: 1.1rem;
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .modal button[type="submit"]:hover {
-            background: #FFA500;
-            transform: translateY(-2px);
         }
 
         /* ===== ANIMATIONS ===== */
@@ -859,11 +667,6 @@
             50% { transform: translateY(-10px); }
         }
 
-        @keyframes modalSlideIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .name { font-size: 2.5rem; }
@@ -872,8 +675,8 @@
             .birthday-text { font-size: 2.5rem; }
             .envelope-container { width: 95%; }
             .invitation-letter { padding: 1.5rem; }
-            .rsvp-card { padding: 2rem; }
-            .rsvp-card h2 { font-size: 2rem; }
+            .letter-header h2 { font-size: 2.2rem; }
+            .letter-content { font-size: 1rem; }
         }
 
         @media (max-width: 480px) {
@@ -882,7 +685,8 @@
             .eighteen-number { font-size: 4rem; }
             .open-invitation-btn { padding: 1rem 2rem; font-size: 1.1rem; }
             .detail-item { flex-direction: column; text-align: center; }
-            .detail-icon { margin-bottom: 0.5rem; }
+            .detail-icon { margin-bottom: 0.5rem; margin-right: 0; }
+            .letter-details { padding: 1.5rem; }
         }
 
         html, body {
@@ -939,15 +743,15 @@
                     </div>
 
                     <div class="letter-content">
-                        <p>As I turn 18, I'd love to share this special moment with you through a simple and intimate gathering—filled with good food, laughter, and meaningful company.</p>
+                        <p>As I turn 18, I'd love to share this special moment with you through a simple and intimate gathering filled with good food, laughter, and meaningful company.</p>
 
                         <div class="letter-highlight">
-                            There will be no formal debut program, no 18 roses or candles—just a heartfelt celebration.
+                            There will be no formal debut program, no 18 roses or candles — just a heartfelt celebration.
                         </div>
 
-                        <p>Gifts are completely optional—please don't feel any pressure to bring anything. Your presence is already more than enough for me 💕</p>
+                        <p>Gifts are completely optional. Please don't feel any pressure to bring anything. Your presence is already more than enough for me. 💕</p>
 
-                        <p style="color: #c41e3a; font-style: italic;">No dress code required—feel free to wear any color you're comfortable in!</p>
+                        <p style="color: #c41e3a; font-style: italic; font-weight: 700;">No dress code required — feel free to wear any color you're comfortable in!</p>
                     </div>
 
                     <!-- Celebration Details Inside Letter -->
@@ -992,44 +796,10 @@
         </div>
     </div>
 
-    <!-- RSVP Section (Separate) -->
-    <section class="rsvp-section-outer">
-        <div class="rsvp-card">
-            <h2>Will You Join Us?</h2>
-            <p class="subtitle">Let me know if you can make it 💕</p>
-
-            <p class="rsvp-text">Kindly let me know if you can come</p>
-            <button class="rsvp-btn" onclick="openRsvpModal()">RSVP Now</button>
-
-            <div class="closing">
-                <p>Made with love for a beautiful celebration.</p>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
         <p>Made with 💕 for Eurika's 18th</p>
     </footer>
-
-    <!-- RSVP Modal -->
-    <div id="rsvp-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeRsvpModal()">&times;</span>
-            <h3>Will you be attending?</h3>
-            <form id="rsvp-form">
-                <input type="text" placeholder="Your Name" required>
-                <select required>
-                    <option value="">Select your response</option>
-                    <option value="yes">Yes, I'll be there! 🎉</option>
-                    <option value="no">Sorry, can't make it 😢</option>
-                    <option value="maybe">Maybe 🤔</option>
-                </select>
-                <textarea placeholder="Leave a message for Eurika (optional)"></textarea>
-                <button type="submit">Send Response</button>
-            </form>
-        </div>
-    </div>
 
     <script>
         // ===== BACKGROUND EFFECTS =====
@@ -1165,48 +935,6 @@
                 closeEnvelope();
             }
         });
-
-        // ===== RSVP MODAL =====
-        function openRsvpModal() {
-            var modal = document.getElementById('rsvp-modal');
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeRsvpModal() {
-            var modal = document.getElementById('rsvp-modal');
-            if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        var rsvpModal = document.getElementById('rsvp-modal');
-        if (rsvpModal) {
-            rsvpModal.addEventListener('click', function(e) {
-                if (e.target === this) closeRsvpModal();
-            });
-        }
-
-        var rsvpForm = document.getElementById('rsvp-form');
-        if (rsvpForm) {
-            rsvpForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                var name = this.querySelector('input').value;
-                var response = this.querySelector('select').value;
-
-                var message = '';
-                if (response === 'yes') message = 'Thank you, ' + name + '! Can\'t wait to see you there! 🎉';
-                else if (response === 'no') message = 'Thanks for letting us know, ' + name + '. You\'ll be missed! 😢';
-                else message = 'Thanks for the response, ' + name + '! Let us know when you can. 🤔';
-
-                alert(message);
-                closeRsvpModal();
-                this.reset();
-            });
-        }
 
         // ===== INITIALIZE =====
         window.addEventListener('load', function() {
