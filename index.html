@@ -180,6 +180,31 @@
             100% { transform: translateY(100vh) rotate(720deg) translateX(100px); opacity: 0; }
         }
 
+        .flowers-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-flower {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: flowerFloat linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes flowerFloat {
+            0% { transform: translateY(100vh) rotate(0deg) scale(0); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100px) rotate(360deg) scale(1); opacity: 0; }
+        }
+
         .particles {
             position: fixed;
             top: 0;
@@ -363,8 +388,8 @@
 
         .envelope-container {
             position: relative;
-            width: 500px;
-            height: 350px;
+            width: 600px;
+            max-height: 90vh;
             animation: envelopeAppear 0.6s ease-out;
         }
 
@@ -375,13 +400,13 @@
         }
 
         .envelope {
-            position: absolute;
+            position: relative;
             width: 100%;
-            height: 100%;
             background: linear-gradient(135deg, #8B0000, #4a0000);
             border-radius: 10px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             overflow: hidden;
+            padding-bottom: 20px;
         }
 
         .envelope::before {
@@ -401,7 +426,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 60%;
+            height: 200px;
             background: linear-gradient(135deg, #9a0000, #6a0000);
             clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%);
             transform-origin: top;
@@ -417,7 +442,7 @@
 
         .envelope-seal {
             position: absolute;
-            top: 45%;
+            top: 140px;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 50px;
@@ -439,11 +464,8 @@
         }
 
         .invitation-letter {
-            position: absolute;
-            top: 10%;
-            left: 5%;
-            width: 90%;
-            height: 80%;
+            position: relative;
+            margin: 20px;
             background: linear-gradient(135deg, #FFF8DC, #FFE4E1);
             border-radius: 10px;
             padding: 2rem;
@@ -452,11 +474,12 @@
             transition: transform 1s ease-in-out 0.5s;
             z-index: 2;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-height: 70vh;
             overflow-y: auto;
         }
 
         .envelope-container.open .invitation-letter {
-            transform: translateY(-120%);
+            transform: translateY(-20px);
         }
 
         .letter-header {
@@ -506,6 +529,57 @@
             color: #c41e3a;
         }
 
+        /* Celebration Details inside letter */
+        .letter-details {
+            background: rgba(139, 0, 0, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(139, 0, 0, 0.1);
+        }
+
+        .letter-details h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #8B0000;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .detail-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateX(5px);
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-icon {
+            font-size: 1.3rem;
+            margin-right: 0.8rem;
+            min-width: 25px;
+        }
+
+        .detail-text {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .detail-text strong {
+            color: #8B0000;
+        }
+
         .close-envelope-btn {
             position: absolute;
             top: -50px;
@@ -522,6 +596,7 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            z-index: 10;
         }
 
         .close-envelope-btn:hover {
@@ -530,28 +605,8 @@
             transform: rotate(90deg);
         }
 
-        .proceed-btn {
-            display: block;
-            margin: 1.5rem auto 0;
-            background: linear-gradient(135deg, #8B0000, #4a0000);
-            color: var(--gold);
-            border: 2px solid var(--gold);
-            padding: 0.8rem 2rem;
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .proceed-btn:hover {
-            background: var(--gold);
-            color: var(--dark-red);
-            transform: translateY(-2px);
-        }
-
-        /* ===== DETAILS SECTION ===== */
-        .details {
+        /* ===== RSVP SECTION (Separate from envelope) ===== */
+        .rsvp-section-outer {
             position: relative;
             z-index: 2;
             padding: 4rem 1rem;
@@ -560,20 +615,20 @@
             background: linear-gradient(135deg, #8B0000 0%, #4a0000 50%, #8B0000 100%);
         }
 
-        .invitation-card {
+        .rsvp-card {
             background: rgba(74, 0, 0, 0.9);
             border: 2px solid rgba(255, 215, 0, 0.3);
             border-radius: 20px;
             padding: 3rem;
-            max-width: 800px;
+            max-width: 600px;
             width: 100%;
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            animation: slideUp 1s ease-out;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .invitation-card::before {
+        .rsvp-card::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -590,118 +645,19 @@
             50% { transform: translate(10%, 10%); }
         }
 
-        .card-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .card-header h2 {
+        .rsvp-card h2 {
             font-size: 2.5rem;
             color: var(--gold);
             margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .subtitle {
+        .rsvp-card .subtitle {
             font-size: 1.3rem;
             color: var(--pink);
             font-style: italic;
-        }
-
-        .message {
-            text-align: center;
-            line-height: 1.8;
             margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .message p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .highlight {
-            color: var(--gold);
-            font-weight: 700;
-            font-size: 1.2rem !important;
-            padding: 1rem;
-            border-left: 3px solid var(--gold);
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 0 10px 10px 0;
-        }
-
-        .dress-code {
-            color: var(--pink);
-            font-style: italic;
-            font-size: 1.2rem !important;
-        }
-
-        .event-info {
-            background: rgba(139, 0, 0, 0.4);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .info-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .info-item:hover::before {
-            left: 100%;
-        }
-
-        .info-item:hover {
-            transform: translateX(10px);
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
-        }
-
-        .info-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .icon {
-            font-size: 1.5rem;
-            margin-right: 1rem;
-            min-width: 30px;
-        }
-
-        .address {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        .rsvp-section {
-            text-align: center;
-            margin: 2rem 0;
-            padding: 2rem;
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
             position: relative;
             z-index: 1;
         }
@@ -710,6 +666,8 @@
             font-size: 1.3rem;
             margin-bottom: 1.5rem;
             color: var(--pink);
+            position: relative;
+            z-index: 1;
         }
 
         .rsvp-btn {
@@ -726,6 +684,7 @@
             box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
         .rsvp-btn::after {
@@ -777,7 +736,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
+            z-index: 3000;
             justify-content: center;
             align-items: center;
         }
@@ -911,19 +870,19 @@
             .eighteen-number { font-size: 5rem; }
             .eighteen-text { font-size: 1.8rem; }
             .birthday-text { font-size: 2.5rem; }
-            .invitation-card { padding: 1.5rem; }
-            .card-header h2 { font-size: 1.8rem; }
-            .envelope-container { width: 90%; height: 300px; }
+            .envelope-container { width: 95%; }
             .invitation-letter { padding: 1.5rem; }
+            .rsvp-card { padding: 2rem; }
+            .rsvp-card h2 { font-size: 2rem; }
         }
 
         @media (max-width: 480px) {
             .hero { min-height: 80vh; }
             .name { font-size: 2rem; letter-spacing: 0.2em; }
             .eighteen-number { font-size: 4rem; }
-            .info-item { flex-direction: column; text-align: center; }
-            .icon { margin-bottom: 0.5rem; }
             .open-invitation-btn { padding: 1rem 2rem; font-size: 1.1rem; }
+            .detail-item { flex-direction: column; text-align: center; }
+            .detail-icon { margin-bottom: 0.5rem; }
         }
 
         html, body {
@@ -939,6 +898,7 @@
     <div class="hearts-container" id="hearts-container"></div>
     <div class="sparkles-container" id="sparkles-container"></div>
     <div class="petals-container" id="petals-container"></div>
+    <div class="flowers-container" id="flowers-container"></div>
     <div class="particles" id="particles"></div>
 
     <!-- Hero Section -->
@@ -957,7 +917,7 @@
 
             <div class="open-btn-container">
                 <button class="open-invitation-btn" onclick="openEnvelope()">
-                    ✨ Open My Invitation ✨
+                    💌 Open My Invitation
                 </button>
             </div>
         </div>
@@ -970,7 +930,7 @@
 
             <div class="envelope">
                 <div class="envelope-flap"></div>
-                <div class="envelope-seal">💌</div>
+                <div class="envelope-seal">💝</div>
 
                 <div class="invitation-letter">
                     <div class="letter-header">
@@ -990,61 +950,56 @@
                         <p style="color: #c41e3a; font-style: italic;">No dress code required—feel free to wear any color you're comfortable in!</p>
                     </div>
 
+                    <!-- Celebration Details Inside Letter -->
+                    <div class="letter-details">
+                        <h3>🎉 Celebration Details 🎉</h3>
+
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <div class="detail-text">
+                                <strong>Venue:</strong> Our home<br>
+                                Block 6 Lot 5-B Velez St., Vista Verde Executive Village, San Isidro (Pob.), Antipolo City, Rizal, South Luzon
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <div class="detail-text">
+                                <strong>Date:</strong> May 9, 2026
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-icon">⏰</span>
+                            <div class="detail-text">
+                                <strong>Time:</strong> 3:00 PM
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-icon">🕐</span>
+                            <div class="detail-text">
+                                <strong>End Time:</strong> Anytime (feel free to stay as long as you like!)
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="letter-footer">
                         <p>Your presence would already mean so much to me, and I truly hope you can come.</p>
                     </div>
-
-                    <button class="proceed-btn" onclick="proceedToDetails()">
-                        See Details &rarr;
-                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Details Section -->
-    <section class="details" id="details-section">
-        <div class="invitation-card">
-            <div class="card-header">
-                <h2>Celebration Details</h2>
-                <p class="subtitle">Everything you need to know 💕</p>
-            </div>
+    <!-- RSVP Section (Separate) -->
+    <section class="rsvp-section-outer">
+        <div class="rsvp-card">
+            <h2>Will You Join Us?</h2>
+            <p class="subtitle">Let me know if you can make it 💕</p>
 
-            <div class="event-info">
-                <div class="info-item">
-                    <span class="icon">📍</span>
-                    <div>
-                        <strong>Venue:</strong> Our home<br>
-                        <span class="address">Block 6 Lot 5-B Velez St., Vista Verde Executive Village, San Isidro (Pob.), Cainta Rizal, South Luzon</span>
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <span class="icon">📅</span>
-                    <div>
-                        <strong>Date:</strong> May 9, 2026
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <span class="icon">⏰</span>
-                    <div>
-                        <strong>Time:</strong> 3:00 PM
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <span class="icon">🕐</span>
-                    <div>
-                        <strong>End Time:</strong> Anytime (feel free to stay as long as you like!)
-                    </div>
-                </div>
-            </div>
-
-            <div class="rsvp-section">
-                <p class="rsvp-text">Kindly let me know if you can come 💕</p>
-                <button class="rsvp-btn" onclick="openRsvpModal()">RSVP Now</button>
-            </div>
+            <p class="rsvp-text">Kindly let me know if you can come</p>
+            <button class="rsvp-btn" onclick="openRsvpModal()">RSVP Now</button>
 
             <div class="closing">
                 <p>Made with love for a beautiful celebration.</p>
@@ -1098,13 +1053,13 @@
 
         function createHearts() {
             const container = document.getElementById('hearts-container');
-            const hearts = ['💕', '💖', '💗', '💓', '💝'];
-            for (let i = 0; i < 15; i++) {
+            const hearts = ['💕', '💖', '💗', '💓', '💝', '❤️', '💘'];
+            for (let i = 0; i < 20; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'floating-heart';
                 heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
                 heart.style.left = Math.random() * 100 + '%';
-                heart.style.fontSize = (Math.random() * 1 + 0.8) + 'rem';
+                heart.style.fontSize = (Math.random() * 1.2 + 0.8) + 'rem';
                 heart.style.animationDuration = (Math.random() * 8 + 6) + 's';
                 heart.style.animationDelay = (Math.random() * 10) + 's';
                 container.appendChild(heart);
@@ -1113,7 +1068,7 @@
 
         function createSparkles() {
             const container = document.getElementById('sparkles-container');
-            for (let i = 0; i < 25; i++) {
+            for (let i = 0; i < 30; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
                 sparkle.style.left = Math.random() * 100 + '%';
@@ -1126,7 +1081,7 @@
 
         function createPetals() {
             const container = document.getElementById('petals-container');
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 15; i++) {
                 const petal = document.createElement('div');
                 petal.className = 'petal';
                 petal.style.left = Math.random() * 100 + '%';
@@ -1138,9 +1093,24 @@
             }
         }
 
+        function createFlowers() {
+            const container = document.getElementById('flowers-container');
+            const flowers = ['🌸', '💐', '🌺', '🌹', '🌷', '🌻'];
+            for (let i = 0; i < 12; i++) {
+                const flower = document.createElement('div');
+                flower.className = 'floating-flower';
+                flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                flower.style.left = Math.random() * 100 + '%';
+                flower.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+                flower.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                flower.style.animationDelay = (Math.random() * 12) + 's';
+                container.appendChild(flower);
+            }
+        }
+
         function createParticles() {
             const container = document.getElementById('particles');
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 25; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 const size = Math.random() * 15 + 5;
@@ -1161,7 +1131,6 @@
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
 
-            // Open envelope after short delay
             setTimeout(() => {
                 container.classList.add('open');
             }, 800);
@@ -1176,13 +1145,6 @@
                 overlay.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }, 500);
-        }
-
-        function proceedToDetails() {
-            closeEnvelope();
-            setTimeout(() => {
-                document.getElementById('details-section').scrollIntoView({ behavior: 'smooth' });
-            }, 600);
         }
 
         // ===== RSVP MODAL =====
@@ -1221,6 +1183,7 @@
             createHearts();
             createSparkles();
             createPetals();
+            createFlowers();
             createParticles();
         });
     </script>
