@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-    
+
     <style>
         * {
             margin: 0;
@@ -26,6 +26,7 @@
 
         html {
             scroll-behavior: smooth;
+            background-color: #4a0000;
         }
 
         body {
@@ -514,28 +515,28 @@
             .name {
                 font-size: 2.5rem;
             }
-            
+
             .eighteen-number {
                 font-size: 5rem;
             }
-            
+
             .eighteen-text {
                 font-size: 1.8rem;
             }
-            
+
             .birthday-text {
                 font-size: 2.5rem;
             }
-            
+
             .dancer-silhouette {
                 opacity: 0.3;
                 right: -10%;
             }
-            
+
             .invitation-card {
                 padding: 1.5rem;
             }
-            
+
             .card-header h2 {
                 font-size: 1.8rem;
             }
@@ -545,21 +546,21 @@
             .hero {
                 min-height: 80vh;
             }
-            
+
             .name {
                 font-size: 2rem;
                 letter-spacing: 0.2em;
             }
-            
+
             .eighteen-number {
                 font-size: 4rem;
             }
-            
+
             .info-item {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .icon {
                 margin-bottom: 0.5rem;
             }
@@ -570,6 +571,7 @@
             background-color: #4a0000 !important;
         }
     </style>
+<base target="_blank">
 </head>
 <body>
     <!-- Floating particles background -->
@@ -579,7 +581,7 @@
     <section class="hero">
         <div class="silk-decoration silk-left"></div>
         <div class="silk-decoration silk-right"></div>
-        
+
         <div class="hero-content">
             <h1 class="name">EURIKA'S</h1>
             <div class="eighteen-container">
@@ -589,7 +591,7 @@
             <h2 class="birthday-text">BIRTHDAY</h2>
             <div class="lips-decoration">💋</div>
         </div>
-        
+
         <div class="dancer-silhouette">
             <!-- Replace with your uploaded image -->
             <img src="assets/images/118c9348-4f78-44b1-88ac-55f045345b80.jpg" alt="Elegant dancer" id="dancer-img">
@@ -606,11 +608,11 @@
 
             <div class="message">
                 <p>As I turn 18, I'd love to share this special moment with you through a simple and intimate gathering—filled with good food, laughter, and meaningful company.</p>
-                
+
                 <p class="highlight">There will be no formal debut program, no 18 roses or candles—just a heartfelt celebration.</p>
-                
+
                 <p>Gifts are completely optional—please don't feel any pressure to bring anything. Your presence is already more than enough for me 💕</p>
-                
+
                 <p class="dress-code">No dress code required—feel free to wear any color you're comfortable in!</p>
             </div>
 
@@ -689,19 +691,19 @@
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                
+
                 const size = Math.random() * 20 + 5;
                 const left = Math.random() * 100;
                 const duration = Math.random() * 10 + 5;
                 const delay = Math.random() * 5;
-                
+
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 particle.style.left = left + '%';
                 particle.style.animationDuration = duration + 's';
                 particle.style.animationDelay = delay + 's';
                 particle.style.opacity = Math.random() * 0.5 + 0.2;
-                
+
                 container.appendChild(particle);
             }
         }
@@ -727,19 +729,19 @@
         // Form submission
         document.getElementById('rsvp-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const name = this.querySelector('input').value;
             const response = this.querySelector('select').value;
-            
+
             let message = '';
             if (response === 'yes') {
-                message = 'Thank you, ' + name + '! Can\'t wait to see you there! 🎉';
+                message = 'Thank you, ' + name + '! Can't wait to see you there! 🎉';
             } else if (response === 'no') {
-                message = 'Thanks for letting us know, ' + name + '. You\'ll be missed! 😢';
+                message = 'Thanks for letting us know, ' + name + '. You'll be missed! 😢';
             } else {
                 message = 'Thanks for the response, ' + name + '! Let us know when you can. 🤔';
             }
-            
+
             alert(message);
             closeRsvpModal();
             this.reset();
@@ -748,11 +750,11 @@
         // Add scroll reveal animation
         function revealOnScroll() {
             const elements = document.querySelectorAll('.info-item, .message p');
-            
+
             elements.forEach(function(element) {
                 const elementTop = element.getBoundingClientRect().top;
                 const windowHeight = window.innerHeight;
-                
+
                 if (elementTop < windowHeight - 100) {
                     element.style.opacity = '1';
                     element.style.transform = 'translateY(0)';
