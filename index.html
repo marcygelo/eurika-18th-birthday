@@ -540,7 +540,7 @@
 
         .letter-details h3 {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: #8B0000;
             margin-bottom: 1rem;
             text-align: center;
@@ -923,7 +923,7 @@
         </div>
     </section>
 
-    <!-- Envelope Modal -->
+    <!-- Envelope Modal - Celebration Details Popup -->
     <div class="envelope-overlay" id="envelope-overlay">
         <div class="envelope-container" id="envelope-container">
             <button class="close-envelope-btn" onclick="closeEnvelope()">&times;</button>
@@ -1034,12 +1034,13 @@
     <script>
         // ===== BACKGROUND EFFECTS =====
         function createGlowOrbs() {
-            const container = document.getElementById('glow-orbs');
-            const colors = ['rgba(255, 182, 193, 0.15)', 'rgba(255, 215, 0, 0.1)', 'rgba(139, 0, 0, 0.2)'];
-            for (let i = 0; i < 5; i++) {
-                const orb = document.createElement('div');
+            var container = document.getElementById('glow-orbs');
+            if (!container) return;
+            var colors = ['rgba(255, 182, 193, 0.15)', 'rgba(255, 215, 0, 0.1)', 'rgba(139, 0, 0, 0.2)'];
+            for (var i = 0; i < 5; i++) {
+                var orb = document.createElement('div');
                 orb.className = 'glow-orb';
-                const size = Math.random() * 200 + 100;
+                var size = Math.random() * 200 + 100;
                 orb.style.width = size + 'px';
                 orb.style.height = size + 'px';
                 orb.style.background = colors[i % colors.length];
@@ -1052,10 +1053,11 @@
         }
 
         function createHearts() {
-            const container = document.getElementById('hearts-container');
-            const hearts = ['💕', '💖', '💗', '💓', '💝', '❤️', '💘'];
-            for (let i = 0; i < 20; i++) {
-                const heart = document.createElement('div');
+            var container = document.getElementById('hearts-container');
+            if (!container) return;
+            var hearts = ['💕', '💖', '💗', '💓', '💝', '❤️', '💘'];
+            for (var i = 0; i < 20; i++) {
+                var heart = document.createElement('div');
                 heart.className = 'floating-heart';
                 heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
                 heart.style.left = Math.random() * 100 + '%';
@@ -1067,9 +1069,10 @@
         }
 
         function createSparkles() {
-            const container = document.getElementById('sparkles-container');
-            for (let i = 0; i < 30; i++) {
-                const sparkle = document.createElement('div');
+            var container = document.getElementById('sparkles-container');
+            if (!container) return;
+            for (var i = 0; i < 30; i++) {
+                var sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
                 sparkle.style.left = Math.random() * 100 + '%';
                 sparkle.style.top = Math.random() * 100 + '%';
@@ -1080,9 +1083,10 @@
         }
 
         function createPetals() {
-            const container = document.getElementById('petals-container');
-            for (let i = 0; i < 15; i++) {
-                const petal = document.createElement('div');
+            var container = document.getElementById('petals-container');
+            if (!container) return;
+            for (var i = 0; i < 15; i++) {
+                var petal = document.createElement('div');
                 petal.className = 'petal';
                 petal.style.left = Math.random() * 100 + '%';
                 petal.style.animationDuration = (Math.random() * 10 + 8) + 's';
@@ -1094,10 +1098,11 @@
         }
 
         function createFlowers() {
-            const container = document.getElementById('flowers-container');
-            const flowers = ['🌸', '💐', '🌺', '🌹', '🌷', '🌻'];
-            for (let i = 0; i < 12; i++) {
-                const flower = document.createElement('div');
+            var container = document.getElementById('flowers-container');
+            if (!container) return;
+            var flowers = ['🌸', '💐', '🌺', '🌹', '🌷', '🌻'];
+            for (var i = 0; i < 12; i++) {
+                var flower = document.createElement('div');
                 flower.className = 'floating-flower';
                 flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
                 flower.style.left = Math.random() * 100 + '%';
@@ -1109,11 +1114,12 @@
         }
 
         function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 25; i++) {
-                const particle = document.createElement('div');
+            var container = document.getElementById('particles');
+            if (!container) return;
+            for (var i = 0; i < 25; i++) {
+                var particle = document.createElement('div');
                 particle.className = 'particle';
-                const size = Math.random() * 15 + 5;
+                var size = Math.random() * 15 + 5;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 particle.style.left = Math.random() * 100 + '%';
@@ -1126,56 +1132,81 @@
 
         // ===== ENVELOPE FUNCTIONS =====
         function openEnvelope() {
-            const overlay = document.getElementById('envelope-overlay');
-            const container = document.getElementById('envelope-container');
+            var overlay = document.getElementById('envelope-overlay');
+            var container = document.getElementById('envelope-container');
+            if (!overlay || !container) {
+                console.log('Envelope elements not found');
+                return;
+            }
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
 
-            setTimeout(() => {
+            setTimeout(function() {
                 container.classList.add('open');
             }, 800);
         }
 
         function closeEnvelope() {
-            const overlay = document.getElementById('envelope-overlay');
-            const container = document.getElementById('envelope-container');
+            var overlay = document.getElementById('envelope-overlay');
+            var container = document.getElementById('envelope-container');
+            if (!overlay || !container) return;
             container.classList.remove('open');
 
-            setTimeout(() => {
+            setTimeout(function() {
                 overlay.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }, 500);
         }
 
+        // Close envelope when clicking outside
+        document.addEventListener('click', function(e) {
+            var overlay = document.getElementById('envelope-overlay');
+            if (e.target === overlay) {
+                closeEnvelope();
+            }
+        });
+
         // ===== RSVP MODAL =====
         function openRsvpModal() {
-            document.getElementById('rsvp-modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
+            var modal = document.getElementById('rsvp-modal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
         }
 
         function closeRsvpModal() {
-            document.getElementById('rsvp-modal').classList.remove('active');
-            document.body.style.overflow = 'auto';
+            var modal = document.getElementById('rsvp-modal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         }
 
-        document.getElementById('rsvp-modal').addEventListener('click', function(e) {
-            if (e.target === this) closeRsvpModal();
-        });
+        var rsvpModal = document.getElementById('rsvp-modal');
+        if (rsvpModal) {
+            rsvpModal.addEventListener('click', function(e) {
+                if (e.target === this) closeRsvpModal();
+            });
+        }
 
-        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = this.querySelector('input').value;
-            const response = this.querySelector('select').value;
+        var rsvpForm = document.getElementById('rsvp-form');
+        if (rsvpForm) {
+            rsvpForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var name = this.querySelector('input').value;
+                var response = this.querySelector('select').value;
 
-            let message = '';
-            if (response === 'yes') message = 'Thank you, ' + name + '! Can't wait to see you there! 🎉';
-            else if (response === 'no') message = 'Thanks for letting us know, ' + name + '. You'll be missed! 😢';
-            else message = 'Thanks for the response, ' + name + '! Let us know when you can. 🤔';
+                var message = '';
+                if (response === 'yes') message = 'Thank you, ' + name + '! Can\'t wait to see you there! 🎉';
+                else if (response === 'no') message = 'Thanks for letting us know, ' + name + '. You\'ll be missed! 😢';
+                else message = 'Thanks for the response, ' + name + '! Let us know when you can. 🤔';
 
-            alert(message);
-            closeRsvpModal();
-            this.reset();
-        });
+                alert(message);
+                closeRsvpModal();
+                this.reset();
+            });
+        }
 
         // ===== INITIALIZE =====
         window.addEventListener('load', function() {
